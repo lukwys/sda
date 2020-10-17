@@ -1,14 +1,38 @@
 <template>
   <li class="post">
-      <h2 class="post__title">{{title}}</h2>
-      <p class="post__body">{{body}}</p>
+      <h2 class="post__title">{{post.title}}</h2>
+      <p class="post__body">{{post.body}}</p>
+      <Details :user="user" :commentsCounter="commentsCounter"/>
   </li>
 </template>
 
 <script>
+import Details from "./Details";
+
 export default {
   name: 'Post', 
-  props: ['title', 'body']
+  components: {
+  Details, 
+  },
+  data: () => {
+    return {
+      comments: []
+    }
+  },
+  props: ['post', 'users'],
+  computed: {
+    user() {
+      return this.users.find(user => this.post.userId === user.id)
+    },
+    commentsCounter() {
+      return this.comments.length;
+    }
+  },
+  async mounted() {
+    const result = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${this.post.id}`);
+    const data = await result.json();
+    this.comments = data;
+  }
 };
 </script>
 
