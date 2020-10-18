@@ -1,9 +1,9 @@
 <template>
-<div class="details">
+  <div class="details">
     <BIcon icon="person-circle" class="details__icon" />
-    <span class="details__user" @click="openUser">{{user.name}}</span>
+    <span class="details__user" @click="openUser">{{ user.name }}</span>
     <BIcon icon="envelope" class="details__icon" />
-    <span class="details__comment">{{commentsCounter}}</span>
+    <span class="details__comment">{{ commentsCounter }}</span>
   </div>
 </template>
 
@@ -17,16 +17,16 @@ export default {
   },
   props: ["user", "commentsCounter"],
   methods: {
-      openUser() {
-          this.$router.push(`/user/${this.user.id}`)
-      }
+    openUser() {
+      this.$router.push(`/user/${this.user.id}`);
+    },
   }
 };
 </script>
 
 <style scoped lang="scss">
 .details {
-  &__user{
+  &__user {
     margin-right: 40px;
     cursor: pointer;
   }

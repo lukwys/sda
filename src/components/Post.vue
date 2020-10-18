@@ -22,7 +22,7 @@ export default {
   props: ['post', 'users'],
   computed: {
     user() {
-      return this.users.find(user => this.post.userId === user.id)
+      return this.$store.getters.getUserById(this.post.userId)
     },
     commentsCounter() {
       return this.comments.length;

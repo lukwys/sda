@@ -22,15 +22,17 @@ export default {
     Post,
     BPagination,
   },
+  props: ['posts'],
   data: () => {
     return {
-      posts: [],
       perPage: 10,
-      currentPage: 1,
-      users: [],
+      currentPage: 1
     };
   },
   computed: {
+    users() {
+      return this.$store.state.users;
+    },
     rows() {
       return this.posts.length;
     },
@@ -48,22 +50,6 @@ export default {
       if (this.currentPage === 0) return 10;
       return this.paginatedPostFirst + this.perPage;
     }
-  },
-  methods: {
-    async fetchPosts() {
-      const result = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data = await result.json();
-      this.posts = data;
-    },
-    async fetchUsers() {
-      const result = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await result.json();
-      this.users = data;
-    }
-  },
-  mounted() {
-    this.fetchPosts();
-    this.fetchUsers();
   },
 };
 </script>
