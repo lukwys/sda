@@ -1,5 +1,16 @@
 <template>
-  <div class="user info">
-    <h1>This is an user info page</h1>
+  <div>
+    <User />
   </div>
 </template>
+
+<script>
+import User from '../components/User';
+
+export default {
+  name: 'UserInfo',
+  components: {
+    User
+  }
+}
+</script>
