@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import Details from "./Details";
+import Details from "./Details2";
 
 export default {
   name: 'Post', 
   components: {
-  Details, 
+    Details, 
   },
   data: () => {
     return {
