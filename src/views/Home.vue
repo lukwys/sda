@@ -1,27 +1,26 @@
 <template>
   <div class="home">
-    <PostList  :posts="posts" />
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
-
-import PostList from '../components/PostsList';
-import { mapActions } from 'vuex';
+import PostList from "../components/PostsList";
+import { mapActions } from "vuex";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    PostList
+    PostList,
   },
   data: () => {
     return {
-      posts: []
-    }
+      posts: [],
+    };
   },
   methods: {
     ...mapActions(["fetchUsers"]),
-     async fetchPosts() {
+    async fetchPosts() {
       const result = await fetch("https://jsonplaceholder.typicode.com/posts");
       const data = await result.json();
       this.posts = data;
@@ -30,6 +29,6 @@ export default {
   mounted() {
     this.fetchPosts();
     this.fetchUsers();
-  }
-}
+  },
+};
 </script>

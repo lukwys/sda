@@ -2,20 +2,24 @@
   <div class="details">
     <BIcon icon="person-circle" class="details__icon" />
     <span class="details__user" @click="openUser">{{ user.name }}</span>
-    <BIcon icon="envelope" class="details__icon" />
-    <span class="details__comment">{{ commentsCounter }}</span>
+    <div v-b-toggle="'comments'">
+      <BIcon icon="envelope" class="details__icon" />
+      <span class="details__comment" >{{ commentsCounter }}</span>
+    </div>
+    <BCollapse id="comments"> <Comments :comments="comments" /> </BCollapse>
   </div>
 </template>
 
 <script>
 import { BIcon } from "bootstrap-vue";
-
+import { BCollapse } from 'bootstrap-vue'
+import Comments from "./Comments";
 export default {
   name: "Details",
   components: {
-    BIcon,
+    BIcon, BCollapse, Comments
   },
-  props: ["user", "commentsCounter"],
+  props: ["user", "comments", "commentsCounter"],
   methods: {
     openUser() {
       this.$router.push(`/user/${this.user.id}`);

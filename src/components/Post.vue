@@ -2,7 +2,7 @@
   <li class="post">
       <h2 class="post__title">{{post.title}}</h2>
       <p class="post__body">{{post.body}}</p>
-      <Details :user="user" :commentsCounter="commentsCounter"/>
+      <Details :user="user" :comments="comments" :commentsCounter="commentsCounter"/>
   </li>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     },
     commentsCounter() {
       return this.comments.length;
-    }
+    },
   },
   async mounted() {
     const result = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${this.post.id}`);
